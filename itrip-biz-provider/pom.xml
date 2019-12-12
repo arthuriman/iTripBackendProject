@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                                 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>itrip-auth-consumer</artifactId>
+	<artifactId>itrip-biz-provider</artifactId>
 	<packaging>jar</packaging>
 
 	<!-- 配置子项目的父级依赖关系为itrip-parent [BEGIN] -->
@@ -19,6 +19,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<mybatis-spring-boot.version>2.1.1</mybatis-spring-boot.version>
+		<druid-spring-boot.version>1.1.21</druid-spring-boot.version>
 	</properties>
 
 	<dependencies>
@@ -29,6 +31,29 @@
 			<version>${parent.version}</version>
 		</dependency>
 		<!-- 配置itrip-commons项目依赖关系 [END] -->
+
+		<!-- 配置MySQL数据库连接驱动依赖关系 [BEGIN] -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<!-- 配置MySQL数据库连接驱动依赖关系 [END] -->
+
+		<!-- 配置Mybatis和Spring Boot结合的依赖关系 [BEGIN] -->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>${mybatis-spring-boot.version}</version>
+		</dependency>
+		<!-- 配置Mybatis和Spring Boot结合的依赖关系 [END] -->
+
+		<!-- 配置druid和Spring Boot结合的依赖关系 [BEGIN] -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>${druid-spring-boot.version}</version>
+		</dependency>
+		<!-- 配置druid和Spring Boot结合的依赖关系 [END] -->
 
 		<dependency>
 			<groupId>junit</groupId>

@@ -29,6 +29,13 @@
 		</dependency>
 		<!-- 无论是Provider端还是Consumer端，都属于Eureka Client端，因此需要配置Eureka Client端依赖关系 [END] -->
 
+		<!-- 配置Consumer远程调用Provider所使用的OpenFeign的依赖关系 [BEGIN] -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		<!-- 配置Consumer远程调用Provider所使用的OpenFeign的依赖关系 [END] -->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

@@ -1,0 +1,12 @@
+### 配置项目启动端口号
+server:
+  port: 8888
+spring:
+  ### 项目应用名
+  application:
+    name: itrip-biz-consumer
+### 配置Eureka Client相关信息
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9999/eureka/

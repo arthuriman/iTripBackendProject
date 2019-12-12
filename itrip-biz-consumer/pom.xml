@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                                 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>itrip-auth-consumer</artifactId>
+	<artifactId>itrip-biz-consumer</artifactId>
 	<packaging>jar</packaging>
 
 	<!-- 配置子项目的父级依赖关系为itrip-parent [BEGIN] -->
