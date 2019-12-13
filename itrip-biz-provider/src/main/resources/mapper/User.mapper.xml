@@ -19,6 +19,14 @@
 		</where>
 	</select>
 
+	<insert id="saveUser" parameterType="User">
+		insert into itrip_user(
+			userCode, userPassword, userName
+		) values (
+			#{userCode}, #{userPassword}, #{userName}
+		)
+	</insert>
+
 	<resultMap id="userMap" type="User">
 		<id property="id" javaType="java.lang.Long" column="id"/>
 		<result property="userCode" javaType="java.lang.String" column="userCode"/>

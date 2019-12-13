@@ -4,6 +4,7 @@ import com.artiecode.itrip.base.controller.BaseController;
 import com.artiecode.itrip.pojo.entity.User;
 import com.artiecode.itrip.pojo.vo.Dto;
 import com.artiecode.itrip.transport.UserTransport;
+import com.artiecode.itrip.util.MD5Util;
 import com.artiecode.itrip.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -56,9 +57,36 @@ public class AuthController extends BaseController {
 	 */
 	@RequestMapping(value = "/api/doregister", method = RequestMethod.POST)
 	public Dto<User> registryUserByEmail(@RequestBody User user) throws Exception {
+		Dto<User> result = new Dto<User>();
 		// 1、校验用户所填写的信息是否格式有效，包含用户的Email地址和密码
-		// 2、对于用户的登录密码进行MD5加密
-		// 3、保存用户数据，并且在业务层保存成功的是否使用邮箱功能发送激活码，并且将激活码设定到redis中保存，并且设定有效时间
-		return null;
+		if (user.getUserCode() != null && !"".equals(user.getUserCode().trim()) &&
+				user.getUserPassword() != null && !"".equals(user.getUserPassword())) {
+			// 校验用户的Email地址是否正确
+			if (UserUtil.checkUserCodePattern(user.getUserCode())) {
+				// 校验用户的唯一性
+				if (userTransport.getUserByUserCode(user.getUserCode()) == null) {
+					// 2、对于用户的登录密码进行MD5加密
+					user.setUserPassword(MD5Util.encrypt(user.getUserPassword()));
+					// 3、保存用户数据，并且在业务层保存成功的是否使用邮箱功能发送激活码，并且将激活码设定到redis中保存，并且设定有效时间
+					if (userTransport.saveUser(user)) {
+						result.setSuccess("true");
+						result.setMsg("请在30分钟内登录您的邮箱，查看激活码");
+					} else {
+						result.setSuccess("false");
+						result.setMsg("系统错误，请联系管理员赵文强：18149335891");
+					}
+				} else {
+					result.setSuccess("false");
+					result.setMsg("该Email地址已被占用，请直接登录");
+				}
+			} else {
+				result.setSuccess("false");
+				result.setMsg("请填写正确的Email地址");
+			}
+		} else {
+			result.setSuccess("false");
+			result.setMsg("请填写您的Email地址和登录密码");
+		}
+		return result;
 	}
 }

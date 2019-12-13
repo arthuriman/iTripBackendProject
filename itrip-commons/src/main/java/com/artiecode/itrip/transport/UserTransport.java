@@ -2,6 +2,7 @@ package com.artiecode.itrip.transport;
 
 import com.artiecode.itrip.pojo.entity.User;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,4 +24,13 @@ public interface UserTransport {
 	 */
 	@RequestMapping(value = "/code", method = RequestMethod.POST)
 	User getUserByUserCode(@RequestParam String userCode) throws Exception;
+
+	/**
+	 * <b>保存用户信息</b>
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	boolean saveUser(@RequestBody User user) throws Exception;
 }
