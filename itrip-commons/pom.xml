@@ -50,6 +50,14 @@
 		</dependency>
 		<!-- 配置Spring Boot Mail集成的依赖关系 [END] -->
 
+		<!-- 配置使用OAuth2认证进行用户身份认证所需要的jwt依赖关系 [BEGIN] -->
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>3.8.3</version>
+		</dependency>
+		<!-- 配置使用OAuth2认证进行用户身份认证所需要的jwt依赖关系 [END] -->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

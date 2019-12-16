@@ -22,4 +22,6 @@ public class ConstantUtil {
 	public static final Long ACTIVE_CODE_TIMEOUT = Long.parseLong(props.getProperty("active.code.timeout"));
 
 	public static final String MAIL_FROM = props.getProperty("mail.from");
+
+	public static final String AUTH_SECRET = props.getProperty("auth.secret");
 }

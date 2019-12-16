@@ -33,4 +33,14 @@ public interface UserTransport {
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	boolean saveUser(@RequestBody User user) throws Exception;
+
+	/**
+	 * <b>使用userCode和userPassword进行用户信息登录</b>
+	 * @param userCode
+	 * @param userPassword
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	User doLoginUser(@RequestParam String userCode, @RequestParam String userPassword) throws Exception;
 }

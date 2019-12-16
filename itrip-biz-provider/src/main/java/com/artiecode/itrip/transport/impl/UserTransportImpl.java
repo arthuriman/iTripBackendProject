@@ -42,4 +42,16 @@ public class UserTransportImpl implements UserTransport {
 	public boolean saveUser(@RequestBody User user) throws Exception {
 		return userService.saveUser(user);
 	}
+
+	/**
+	 * <b>使用userCode和userPassword进行用户信息登录</b>
+	 * @param userCode
+	 * @param userPassword
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public User doLoginUser(@RequestParam String userCode, @RequestParam String userPassword) throws Exception {
+		return userService.doLoginUser(userCode, userPassword);
+	}
 }

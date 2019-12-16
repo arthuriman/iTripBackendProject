@@ -24,4 +24,13 @@ public interface UserService {
 	 * @throws Exception
 	 */
 	boolean saveUser(User user) throws Exception;
+
+	/**
+	 * <b>使用userCode和userPassword进行用户信息登录</b>
+	 * @param userCode
+	 * @param userPassword
+	 * @return
+	 * @throws Exception
+	 */
+	User doLoginUser(String userCode, String userPassword) throws Exception;
 }

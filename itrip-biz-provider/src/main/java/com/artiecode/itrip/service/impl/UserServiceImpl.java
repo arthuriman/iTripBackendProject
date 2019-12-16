@@ -87,4 +87,27 @@ public class UserServiceImpl implements UserService {
 		}
 		return false;
 	}
+
+	/**
+	 * <b>使用userCode和userPassword进行用户信息登录</b>
+	 * @param userCode
+	 * @param userPassword
+	 * @return
+	 * @throws Exception
+	 */
+	public User doLoginUser(String userCode, String userPassword) throws Exception {
+		// 绑定查询Map集合
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+		queryMap.put("userCode", userCode);
+		queryMap.put("userPassword", userPassword);
+		// 用户处于激活状态
+		queryMap.put("activated", 1);
+		// 进行查询
+		List<User> userList = userDao.findUserByQuery(queryMap);
+
+		if (userList != null && userList.size() > 0) {
+			return userList.get(0);
+		}
+		return null;
+	}
 }
