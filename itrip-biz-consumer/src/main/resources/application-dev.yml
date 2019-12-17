@@ -5,6 +5,8 @@ spring:
   ### 项目应用名
   application:
     name: itrip-biz-consumer
+  main:
+    allow-bean-definition-overriding: true
 ### 配置Eureka Client相关信息
 eureka:
   client:

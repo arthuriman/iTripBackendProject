@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.artiecode.itrip.dao.AreaDicDao">
+	<select id="findAreaDisListByQuery" parameterType="java.util.Map" resultMap="areaDicMap">
+		select
+			iad.id,
+			iad.name,
+			iad.areaNo,
+			iad.isActivated,
+			iad.isTradingArea,
+			iad.isHot,
+			iad.level,
+			iad.isChina,
+			iad.pinyin
+		from
+			itrip_area_dic iad
+		<where>
+			<trim suffixOverrides="and">
+				<if test="isActivated != null">isActivated=#{isActivated} and</if>
+				<if test="isHot != null">isHot=#{isHot} and</if>
+				<if test="isChina != null">isChina=#{isChina} and</if>
+			</trim>
+		</where>
+	</select>
+	
+	<resultMap id="areaDicMap" type="AreaDic">
+		<id property="id" javaType="java.lang.Long" column="id"/>
+		<result property="name" javaType="java.lang.String" column="name"/>
+		<result property="areaNo" javaType="java.lang.String" column="areaNo"/>
+		<result property="isActivated" javaType="java.lang.Integer" column="isActivated"/>
+		<result property="isTradingArea" javaType="java.lang.Integer" column="isTradingArea"/>
+		<result property="isHot" javaType="java.lang.Integer" column="isHot"/>
+		<result property="level" javaType="java.lang.Integer" column="level"/>
+		<result property="isChina" javaType="java.lang.Integer" column="isChina"/>
+		<result property="pinyin" javaType="java.lang.String" column="pinyin"/>
+	</resultMap>
+</mapper>
