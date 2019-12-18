@@ -1,0 +1,4 @@
+### 设定所使用的配置文件信息
+spring:
+  profiles:
+    active: dev

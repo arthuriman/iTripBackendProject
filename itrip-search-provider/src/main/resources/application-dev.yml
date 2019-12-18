@@ -1,0 +1,16 @@
+### 项目使用端口号
+server:
+  port: 10001
+spring:
+  ### 项目应用名
+  application:
+    name: itrip-search-provider
+  ### Solr服务所在地址
+  data:
+    solr:
+      host: http://localhost:8080/solr
+### Eureka Server地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9999/eureka
