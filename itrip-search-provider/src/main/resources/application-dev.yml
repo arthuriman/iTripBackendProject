@@ -1,6 +1,6 @@
 ### 项目使用端口号
 server:
-  port: 10001
+  port: 11111
 spring:
   ### 项目应用名
   application:
@@ -8,7 +8,7 @@ spring:
   ### Solr服务所在地址
   data:
     solr:
-      host: http://localhost:8080/solr
+      host: http://localhost:8080/solr/itrip
 ### Eureka Server地址
 eureka:
   client:

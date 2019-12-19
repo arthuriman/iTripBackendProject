@@ -65,6 +65,19 @@
 		</dependency>
 		<!-- 配置使用OAuth2认证进行用户身份认证所需要的jwt依赖关系 [END] -->
 
+		<!-- 配置使用Swagger和Spring Boot结合的依赖关系 [BEGIN] -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<!-- 配置使用Swagger和Spring Boot结合的依赖关系 [END] -->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

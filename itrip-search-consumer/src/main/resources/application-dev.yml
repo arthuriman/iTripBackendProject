@@ -1,5 +1,5 @@
 server:
-  port: 10000
+  port: 11110
 spring:
   application:
     name: itrip-search-consumer
