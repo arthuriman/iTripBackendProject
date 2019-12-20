@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * <b>用户信息实体类</b>
  * @author Arthur
- * @version 3.1.0 2019-12-12
+ * @version 4.0.0
  * @since 3.1.0
  */
 public class User implements Serializable {

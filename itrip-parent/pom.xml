@@ -7,7 +7,7 @@
 
 	<groupId>com.artiecode.itrip</groupId>
 	<artifactId>itrip-parent</artifactId>
-	<version>3.1.0</version>
+	<version>4.0.0</version>
 	<packaging>pom</packaging>
 
 	<!-- 使用Spring Boot Parent作为项目整体的父级依赖关系 [BEGIN] -->
@@ -26,13 +26,6 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<!-- 配置Spring Boot Web依赖关系 [END] -->
-
-		<!-- 配置Spring Boot项目热部署依赖插件Spring-boot-devtools [BEGIN] -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-		</dependency>
-		<!-- 配置Spring Boot项目热部署依赖插件Spring-boot-devtools [END] -->
 	</dependencies>
 	<!-- 配置所有子模块所需要用到的共同依赖关系 [END] -->
 

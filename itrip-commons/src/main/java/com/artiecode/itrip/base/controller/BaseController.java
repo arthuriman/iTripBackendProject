@@ -9,9 +9,8 @@ import javax.servlet.http.HttpSession;
 /**
  * <b>基础控制器</b>
  * @author Arthur
- * @version 3.1.1 2019-12-11 从原有的项目中移入到itrip-commons中
- * @version 3.1.0 2019-12-11
- * @since 3.1.0
+ * @version 4.0.0
+ * @since 3.0.0
  */
 public class BaseController {
 	@Autowired

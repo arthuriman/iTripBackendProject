@@ -1,0 +1,7 @@
+### 项目启动端口号
+server:
+  port: 6666
+spring:
+  ### 项目应用名
+  application:
+    name: itrip-user-consumer

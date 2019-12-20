@@ -3,10 +3,10 @@ package com.artiecode.itrip.util;
 import java.security.MessageDigest;
 
 /**
- * <b>使用MD5加密算法对于信息进行加密</b>
+ * <b>使用MD5加密算法对于字符串进行加密</b>
  * @author Arthur
- * @version 3.1.1 2019-12-13
- * @since 3.1.1
+ * @version 4.0.0
+ * @since 3.0.0
  */
 public class MD5Util {
 	private static final String KEY_MD5 = "MD5";
@@ -28,9 +28,5 @@ public class MD5Util {
 			e.printStackTrace();
 		}
 		return sb.toString();
-	}
-
-	public static void main(String[] args) {
-		System.out.println(encrypt("123456"));
 	}
 }

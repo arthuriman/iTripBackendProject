@@ -1,53 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                                 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>itrip-commons</artifactId>
+	<artifactId>itrip-user-consumer</artifactId>
+	<packaging>jar</packaging>
 
-	<!-- 配置使用itrip-parent作为子项目的父级依赖关系 [BEGIN] -->
+	<!-- 配置子项目的父级依赖关系为itrip-parent [BEGIN] -->
 	<parent>
 		<groupId>com.artiecode.itrip</groupId>
 		<artifactId>itrip-parent</artifactId>
 		<version>4.0.0</version>
 	</parent>
-	<!-- 配置使用itrip-parent作为子项目的父级依赖关系 [END] -->
+	<!-- 配置子项目的父级依赖关系为itrip-parent [END] -->
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<springfox-swagger.version>2.9.2</springfox-swagger.version>
 	</properties>
 
 	<dependencies>
-		<!-- 无论是Provider端还是Consumer端，都属于Eureka Client端，因此需要配置Eureka Client端依赖关系 [BEGIN] -->
+		<!-- 配置itrip-commons项目依赖关系 [BEGIN] -->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<groupId>com.artiecode.itrip</groupId>
+			<artifactId>itrip-commons</artifactId>
+			<version>${parent.version}</version>
 		</dependency>
-		<!-- 无论是Provider端还是Consumer端，都属于Eureka Client端，因此需要配置Eureka Client端依赖关系 [END] -->
+		<!-- 配置itrip-commons项目依赖关系 [END] -->
 
-		<!-- 配置Consumer远程调用Provider所使用的OpenFeign的依赖关系 [BEGIN] -->
+		<!-- 配置itrip-transport-interface项目依赖关系 [BEGIN] -->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<groupId>com.artiecode.itrip</groupId>
+			<artifactId>itrip-transport-interface</artifactId>
+			<version>${parent.version}</version>
 		</dependency>
-		<!-- 配置Consumer远程调用Provider所使用的OpenFeign的依赖关系 [END] -->
-
-		<!-- 配置使用Swagger和Spring Boot结合的依赖关系 [BEGIN] -->
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>${springfox-swagger.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>${springfox-swagger.version}</version>
-		</dependency>
-		<!-- 配置使用Swagger和Spring Boot结合的依赖关系 [END] -->
+		<!-- 配置itrip-transport-interface项目依赖关系 [END] -->
 
 		<dependency>
 			<groupId>junit</groupId>
