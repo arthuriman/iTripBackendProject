@@ -7,7 +7,9 @@ import com.artiecode.itrip.util.ActiveCodeUtil;
 import com.artiecode.itrip.util.ConstantUtil;
 import com.artiecode.itrip.util.communication.email.EmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,6 +73,7 @@ public class UserServiceImpl implements UserService {
 			redisTemplate.opsForValue().set(user.getUserCode(), activeCode);
 			// 对于该存入redis的key设置过期时间
 			redisTemplate.expire(user.getUserCode(), ConstantUtil.ACTIVE_CODE_TIMEOUT * 60, TimeUnit.SECONDS);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

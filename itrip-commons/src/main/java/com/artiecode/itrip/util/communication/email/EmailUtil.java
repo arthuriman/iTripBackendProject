@@ -3,6 +3,7 @@ package com.artiecode.itrip.util.communication.email;
 import com.artiecode.itrip.util.ActiveCodeUtil;
 import com.artiecode.itrip.util.ConstantUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
@@ -15,7 +16,7 @@ public class EmailUtil {
 	@Autowired
 	private JavaMailSender mailSender;
 
-	@Async
+	@Async("asyncServieExecutor")
 	public void sendEmail(String email, String activeCode) throws Exception {
 		// 发送邮件到用户邮箱
 		// 设定发送人
