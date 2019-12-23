@@ -1,0 +1,6 @@
+spring:
+  mail:
+    host: smtp.163.com
+    username: awenadmin@163.com
+    password: dk0j190701
+    default-encoding: utf-8

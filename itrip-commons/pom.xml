@@ -49,6 +49,20 @@
 		</dependency>
 		<!-- 配置使用Swagger和Spring Boot结合的依赖关系 [END] -->
 
+		<!-- 配置Spring Boot Email依赖关系 [BEGIN] -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<!-- 配置Spring Boot Email依赖关系 [END] -->
+
+		<!-- 配置Redis和Spring Boot结合的依赖关系 [BEGIN] -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<!-- 配置Redis和Spring Boot结合的依赖关系 [END] -->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

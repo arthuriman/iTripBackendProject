@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=C:/Users/Administrator/Desktop/ccp_rest_sdk-2.7.jar -DgroupId=com.cloopen -DartifactId=ccp_rest_sdk -Dversion=2.7 -Dpackaging=jar
