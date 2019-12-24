@@ -13,6 +13,9 @@ spring:
       initial-size: 5
       min-evictable-idle-time-millis: 30000
       max-evictable-idle-time-millis: 60000
+  redis:
+    port: 6379
+    host: localhost
 ### Mybatis基本信息
 mybatis:
   mapper-locations: classpath:/mapper/*.Mapper.xml

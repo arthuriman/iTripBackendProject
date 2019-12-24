@@ -39,4 +39,28 @@ public class UserTransportImpl implements UserTransport {
 	public boolean registryUserByEmail(@RequestBody User user) throws Exception {
 		return userService.registryUserByEmail(user);
 	}
+
+	/**
+	 * <b>为使用电子邮件注册用户进行激活操作</b>
+	 * @param email
+	 * @param activeCode
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/activateUserForEmail", method = RequestMethod.POST)
+	public boolean activateUserForEmail(@RequestParam String email, @RequestParam String activeCode) throws Exception {
+		return userService.activateUser(email, activeCode);
+	}
+
+	/**
+	 * <b>使用userCode和userPassword进行登录</b>
+	 * @param userCode
+	 * @param userPassword
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public User getUserForLogin(@RequestParam String userCode, @RequestParam String userPassword) throws Exception {
+		return userService.getUserForLogin(userCode, userPassword);
+	}
 }

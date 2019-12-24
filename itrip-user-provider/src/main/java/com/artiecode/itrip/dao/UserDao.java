@@ -28,4 +28,11 @@ public interface UserDao {
 	 * @throws Exception
 	 */
 	void saveUser(User user) throws Exception;
+
+	/**
+	 * <b>更新用户信息</b>
+	 * @param user
+	 * @throws Exception
+	 */
+	void updateUser(User user) throws Exception;
 }

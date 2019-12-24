@@ -11,11 +11,23 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+/**
+ * <b>电子邮件发送工具类</b>
+ * @author Arthur
+ * @version 4.0.0
+ * @since 4.0.0
+ */
 @Component("emailUtil")
 public class EmailUtil {
 	@Autowired
 	private JavaMailSender mailSender;
 
+	/**
+	 * <b>使用电子邮件发送验证码信息</b>
+	 * @param email
+	 * @param activeCode
+	 * @throws Exception
+	 */
 	@Async("asyncServieExecutor")
 	public void sendEmail(String email, String activeCode) throws Exception {
 		// 发送邮件到用户邮箱

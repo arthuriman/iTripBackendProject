@@ -24,4 +24,24 @@ public class ConstantUtil {
 	public static final String MAIL_FROM = props.getProperty("mail.from");
 
 	public static final String AUTH_SECRET = props.getProperty("auth.secret");
+
+	/**
+	 * <b>容联云account_sid</b>
+	 */
+	public static final String SMS_ACCOUNT_SID = props.getProperty("sms.account.sid");
+
+	/**
+	 * <b>容联云account_token</b>
+	 */
+	public static final String SMS_ACCOUNT_TOKEN = props.getProperty("sms.account.token");
+
+	/**
+	 * <b>容联云appid</b>
+	 */
+	public static final String SMS_APPID = props.getProperty("sms.appid");
+
+	/**
+	 * <b>容联云模板id</b>
+	 */
+	public static final String SMS_TEMPLATE_ID = props.getProperty("sms.template.id");
 }

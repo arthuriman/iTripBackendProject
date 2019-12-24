@@ -30,4 +30,24 @@ public interface UserTransport {
 	 */
 	@RequestMapping(value = "/registryUserByEmail", method = RequestMethod.POST)
 	boolean registryUserByEmail(@RequestBody User user) throws Exception;
+
+	/**
+	 * <b>为使用电子邮件注册用户进行激活操作</b>
+	 * @param email
+	 * @param activeCode
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/activateUserForEmail", method = RequestMethod.POST)
+	boolean activateUserForEmail(@RequestParam String email, @RequestParam String activeCode) throws Exception;
+
+	/**
+	 * <b>使用userCode和userPassword进行登录</b>
+	 * @param userCode
+	 * @param userPassword
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	User getUserForLogin(@RequestParam String userCode, @RequestParam String userPassword) throws Exception;
 }

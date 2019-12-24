@@ -24,4 +24,22 @@ public interface UserService {
 	 * @throws Exception
 	 */
 	boolean registryUserByEmail(User user) throws Exception;
+
+	/**
+	 * <b>用户进行账户激活</b>
+	 * @param userCode
+	 * @param activeCode
+	 * @return
+	 * @throws Exception
+	 */
+	boolean activateUser(String userCode, String activeCode) throws Exception;
+
+	/**
+	 * <b>使用userCode和userPassword查找登录用户</b>
+	 * @param userCode
+	 * @param userPassword
+	 * @return
+	 * @throws Exception
+	 */
+	User getUserForLogin(String userCode, String userPassword) throws Exception;
 }

@@ -1,0 +1,7 @@
+### 配置项目启动端口号
+server:
+  port: 7799
+spring:
+  ### 项目应用名
+  application:
+    name: itrip-hotel-provider

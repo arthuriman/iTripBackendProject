@@ -63,6 +63,8 @@ public class UserServiceImpl implements UserService {
 	 */
 	public boolean registryUserByEmail(User user) throws Exception {
 		try {
+			// 默认激活状态为未激活：0
+			user.setActivated(0);
 			// 保存用户信息
 			userDao.saveUser(user);
 			// 生成激活码
@@ -78,5 +80,49 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	/**
+	 * <b>用户进行账户激活</b>
+	 * @param userCode
+	 * @param activeCode
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean activateUser(String userCode, String activeCode) throws Exception {
+		try {
+			// 从redis中获得用户的激活码，和用户所提供的进行比对
+			String registryCode = redisTemplate.opsForValue().get(userCode);
+			if (activeCode.equals(registryCode)) {
+				// 激活码正确，进行用户激活操作
+				User user = new User();
+				user.setUserCode(userCode);
+				user.setActivated(1);
+				userDao.updateUser(user);
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	/**
+	 * <b>使用userCode和userPassword查找登录用户</b>
+	 * @param userCode
+	 * @param userPassword
+	 * @return
+	 * @throws Exception
+	 */
+	public User getUserForLogin(String userCode, String userPassword) throws Exception {
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+		queryMap.put("userCode", userCode);
+		queryMap.put("userPassword", userPassword);
+		// 进行查询
+		List<User> userList = userDao.findUserListByQuery(queryMap);
+		if (userList != null && userList.size() > 0) {
+			return userList.get(0);
+		}
+		return null;
 	}
 }

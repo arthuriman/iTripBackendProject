@@ -1,0 +1,4 @@
+### 设定项目所使用的配置文件
+spring:
+  profiles:
+    active: dev,commons-eureka-client,email
