@@ -19,14 +19,14 @@ public class UserTransportImpl implements UserTransport {
 	private UserService userService;
 
 	/**
-	 * <b>根据用户提供的电子邮件地址，校验是否可以注册使用</b>
-	 * @param email
+	 * <b>校验是否可以注册使用</b>
+	 * @param userCode
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/checkEmailForRegistry", method = RequestMethod.POST)
-	public boolean checkEmailForRegistry(@RequestParam String email) throws Exception {
-		return userService.checkEmailForRegistry(email);
+	@RequestMapping(value = "/checkUserCodeForRegistry", method = RequestMethod.POST)
+	public boolean checkUserCodeForRegistry(@RequestParam String userCode) throws Exception {
+		return userService.checkUserCodeForRegistry(userCode);
 	}
 
 	/**
@@ -35,9 +35,9 @@ public class UserTransportImpl implements UserTransport {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/registryUserByEmail", method = RequestMethod.POST)
-	public boolean registryUserByEmail(@RequestBody User user) throws Exception {
-		return userService.registryUserByEmail(user);
+	@RequestMapping(value = "/registryUser", method = RequestMethod.POST)
+	public boolean registryUser(@RequestBody User user) throws Exception {
+		return userService.registryUser(user);
 	}
 
 	/**

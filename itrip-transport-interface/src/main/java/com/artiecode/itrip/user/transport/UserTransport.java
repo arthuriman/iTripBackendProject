@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public interface UserTransport {
 	/**
-	 * <b>根据用户提供的电子邮件地址，校验是否可以注册使用</b>
-	 * @param email
+	 * <b>校验是否可以注册使用</b>
+	 * @param userCode
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/checkEmailForRegistry", method = RequestMethod.POST)
-	boolean checkEmailForRegistry(@RequestParam String email) throws Exception;
+	@RequestMapping(value = "/checkUserCodeForRegistry", method = RequestMethod.POST)
+	boolean checkUserCodeForRegistry(@RequestParam String userCode) throws Exception;
 
 	/**
 	 * <b>使用电子邮件完成用户注册</b>
@@ -28,8 +28,8 @@ public interface UserTransport {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/registryUserByEmail", method = RequestMethod.POST)
-	boolean registryUserByEmail(@RequestBody User user) throws Exception;
+	@RequestMapping(value = "/registryUser", method = RequestMethod.POST)
+	boolean registryUser(@RequestBody User user) throws Exception;
 
 	/**
 	 * <b>为使用电子邮件注册用户进行激活操作</b>

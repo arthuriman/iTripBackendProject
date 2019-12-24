@@ -6,6 +6,7 @@ import com.artiecode.itrip.service.UserService;
 import com.artiecode.itrip.util.ActiveCodeUtil;
 import com.artiecode.itrip.util.ConstantUtil;
 import com.artiecode.itrip.util.communication.email.EmailUtil;
+import com.artiecode.itrip.util.communication.sms.SMSUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -33,18 +34,19 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private EmailUtil emailUtil;
 	@Autowired
+	private SMSUtil smsUtil;
+	@Autowired
 	private StringRedisTemplate redisTemplate;
 
 	/**
-	 * <b>根据用户提供的电子邮件地址，校验是否可以注册使用</b>
-	 * @param email
+	 * <b>校验是否可以注册使用</b>
+	 * @param userCode
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean checkEmailForRegistry(String email) throws Exception {
-		// 根据用户所提供的Email地址在数据库中进行查询
+	public boolean checkUserCodeForRegistry(String userCode) throws Exception {
 		Map<String, Object> queryMap = new HashMap<String, Object>();
-		queryMap.put("userCode", email);
+		queryMap.put("userCode", userCode);
 		// 进行查询
 		List<User> userList = userDao.findUserListByQuery(queryMap);
 
@@ -61,7 +63,7 @@ public class UserServiceImpl implements UserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean registryUserByEmail(User user) throws Exception {
+	public boolean registryUser(User user) throws Exception {
 		try {
 			// 默认激活状态为未激活：0
 			user.setActivated(0);
@@ -69,8 +71,12 @@ public class UserServiceImpl implements UserService {
 			userDao.saveUser(user);
 			// 生成激活码
 			String activeCode = ActiveCodeUtil.createActiveCode();
-			// 发送邮件
-			emailUtil.sendEmail(user.getUserCode(), activeCode);
+			if (user.getUserCode().matches(ConstantUtil.REGEX_EMAIL)) {
+				// 发送邮件
+				emailUtil.sendEmail(user.getUserCode(), activeCode);
+			} else {
+				smsUtil.sendSMS(user.getUserCode(), activeCode);
+			}
 			// 将激活码保存到Redis中
 			redisTemplate.opsForValue().set(user.getUserCode(), activeCode);
 			// 对于该存入redis的key设置过期时间

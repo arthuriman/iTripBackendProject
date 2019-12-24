@@ -10,12 +10,12 @@ import com.artiecode.itrip.pojo.entity.User;
  */
 public interface UserService {
 	/**
-	 * <b>根据用户提供的电子邮件地址，校验是否可以注册使用</b>
-	 * @param email
+	 * <b>校验是否可以注册使用</b>
+	 * @param userCode
 	 * @return
 	 * @throws Exception
 	 */
-	boolean checkEmailForRegistry(String email) throws Exception;
+	boolean checkUserCodeForRegistry(String userCode) throws Exception;
 
 	/**
 	 * <b>使用电子邮件完成用户注册</b>
@@ -23,7 +23,7 @@ public interface UserService {
 	 * @return
 	 * @throws Exception
 	 */
-	boolean registryUserByEmail(User user) throws Exception;
+	boolean registryUser(User user) throws Exception;
 
 	/**
 	 * <b>用户进行账户激活</b>

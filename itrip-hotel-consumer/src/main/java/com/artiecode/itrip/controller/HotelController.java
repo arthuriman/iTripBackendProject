@@ -4,6 +4,7 @@ import com.artiecode.itrip.base.controller.BaseController;
 import com.artiecode.itrip.base.enums.SuccessEnum;
 import com.artiecode.itrip.hotel.transport.HotelTransport;
 import com.artiecode.itrip.pojo.entity.AreaDic;
+import com.artiecode.itrip.pojo.entity.LabelDic;
 import com.artiecode.itrip.pojo.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,5 +36,16 @@ public class HotelController extends BaseController {
 	public ResponseResult<Object> queryHotCityByIsChina(@PathVariable("isChina") Integer isChina) throws Exception {
 		List<AreaDic> areaDicList = hotelTransport.queryHotCityByIsChina(isChina);
 		return new ResponseResult<Object>(SuccessEnum.SUCCESS_TRUE, areaDicList);
+	}
+
+	/**
+	 * <b>查询酒店特色列表</b>
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/queryhotelfeature", method = RequestMethod.GET)
+	public ResponseResult<Object> queryHotelFeature() throws Exception {
+		List<LabelDic> labelDicList = hotelTransport.queryHotelFeature();
+		return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, labelDicList);
 	}
 }

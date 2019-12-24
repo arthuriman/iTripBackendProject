@@ -44,4 +44,14 @@ public class ConstantUtil {
 	 * <b>容联云模板id</b>
 	 */
 	public static final String SMS_TEMPLATE_ID = props.getProperty("sms.template.id");
+
+	/**
+	 * <b>手机号码正则表达式</b>
+	 */
+	public static final String REGEX_CELLPHONE = props.getProperty("regex.cellphone");
+
+	/**
+	 * <b>电子邮件正则表达式</b>
+	 */
+	public static final String REGEX_EMAIL = props.getProperty("regex.email");
 }
