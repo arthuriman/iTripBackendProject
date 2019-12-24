@@ -42,14 +42,14 @@ public class UserTransportImpl implements UserTransport {
 
 	/**
 	 * <b>为使用电子邮件注册用户进行激活操作</b>
-	 * @param email
+	 * @param userCode
 	 * @param activeCode
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/activateUserForEmail", method = RequestMethod.POST)
-	public boolean activateUserForEmail(@RequestParam String email, @RequestParam String activeCode) throws Exception {
-		return userService.activateUser(email, activeCode);
+	@RequestMapping(value = "/activateUser", method = RequestMethod.POST)
+	public boolean activateUser(@RequestParam String userCode, @RequestParam String activeCode) throws Exception {
+		return userService.activateUser(userCode, activeCode);
 	}
 
 	/**

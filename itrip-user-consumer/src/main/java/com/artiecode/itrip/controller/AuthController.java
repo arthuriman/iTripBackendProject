@@ -95,7 +95,7 @@ public class AuthController extends BaseController {
 			if (user.matches(ConstantUtil.REGEX_EMAIL)) {
 				// 电子邮件格式正确
 				// 进行激活的
-				if (userTransport.activateUserForEmail(user, code)) {
+				if (userTransport.activateUser(user, code)) {
 					return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE);
 				} else {
 					return new ResponseResult<>(SuccessEnum.SUCCESS_FALSE, "激活失败，请联系管理员");
@@ -136,6 +136,35 @@ public class AuthController extends BaseController {
 			}
 		} else {
 			return new ResponseResult<>(SuccessEnum.SUCCESS_FALSE, "请填写手机号码和登录密码");
+		}
+	}
+
+	/**
+	 * <b>激活使用手机注册用户</b>
+	 * @param user
+	 * @param code
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/validatephone", method = RequestMethod.PUT)
+	public ResponseResult<User> activateUserForCellphone(String user, String code) throws Exception {
+		// 校验用户所填写的email地址和校验码是否为null
+		if (user != null && !"".equals(user.trim()) && code != null && !"".equals(code.trim())) {
+			// 此时的email和code都是不为null的
+			// 校验电子邮件是否正确
+			if (user.matches(ConstantUtil.REGEX_CELLPHONE)) {
+				// 电子邮件格式正确
+				// 进行激活的
+				if (userTransport.activateUser(user, code)) {
+					return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE);
+				} else {
+					return new ResponseResult<>(SuccessEnum.SUCCESS_FALSE, "激活失败，请联系管理员");
+				}
+			} else {
+				return new ResponseResult<>(SuccessEnum.SUCCESS_FALSE, "请填写正确的手机号码");
+			}
+		} else {
+			return new ResponseResult<>(SuccessEnum.SUCCESS_FALSE, "请填写手机号码和激活码");
 		}
 	}
 

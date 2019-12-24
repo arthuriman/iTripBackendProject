@@ -33,13 +33,13 @@ public interface UserTransport {
 
 	/**
 	 * <b>为使用电子邮件注册用户进行激活操作</b>
-	 * @param email
+	 * @param userCode
 	 * @param activeCode
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/activateUserForEmail", method = RequestMethod.POST)
-	boolean activateUserForEmail(@RequestParam String email, @RequestParam String activeCode) throws Exception;
+	@RequestMapping(value = "/activateUser", method = RequestMethod.POST)
+	boolean activateUser(@RequestParam String userCode, @RequestParam String activeCode) throws Exception;
 
 	/**
 	 * <b>使用userCode和userPassword进行登录</b>
