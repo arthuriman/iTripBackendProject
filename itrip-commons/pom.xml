@@ -79,6 +79,13 @@
 		</dependency>
 		<!-- 引入java-jwt依赖关系 [END] -->
 
+		<!-- 配置Spring Boot Solr的依赖关系 [BEGIN] -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-solr</artifactId>
+		</dependency>
+		<!-- 配置Spring Boot Solr的依赖关系 [END] -->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

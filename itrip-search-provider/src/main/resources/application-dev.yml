@@ -1,0 +1,9 @@
+server:
+  port: 9977
+spring:
+  application:
+    name: itrip-search-provider
+  data:
+    ### 指定Solr服务所在的地址，并且指定到对应的core位置
+    solr:
+      host: http://localhost:8080/solr/hotel
