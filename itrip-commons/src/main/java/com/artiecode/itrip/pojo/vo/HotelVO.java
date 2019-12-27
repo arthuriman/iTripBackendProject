@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @version 4.0.0
  * @since 4.0.0
  */
-public class ItripHotelVO implements Serializable {
+public class HotelVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Field("id")

@@ -1,6 +1,6 @@
 package com.artiecode.itrip.search.transport;
 
-import com.artiecode.itrip.pojo.vo.ItripHotelVO;
+import com.artiecode.itrip.pojo.vo.HotelVO;
 import com.artiecode.itrip.pojo.vo.SearchHotCityVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,5 +25,5 @@ public interface SearchTransport {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/searchItripHotelListByHotCity", method = RequestMethod.POST)
-	List<ItripHotelVO> searchItripHotelListByHotCity(@RequestBody SearchHotCityVO searchHotCityVO) throws Exception;
+	List<HotelVO> searchItripHotelListByHotCity(@RequestBody SearchHotCityVO searchHotCityVO) throws Exception;
 }
