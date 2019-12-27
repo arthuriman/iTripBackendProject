@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.artiecode.itrip.dao.HotelDao">
+	<select id="findHotelListByQuery" parameterType="java.util.Map" resultMap="hotelMap">
+		select
+			ih.id,
+			ih.hotelName,
+			ih.countryId,
+			ih.provinceId,
+			ih.cityId,
+			ih.address,
+			ih.details,
+			ih.facilities,
+			ih.hotelPolicy,
+			ih.hotelType,
+			ih.hotelLevel,
+			ih.isGroupPurchase,
+			ih.redundantCityName,
+			ih.redundantProvinceName,
+			ih.redundantCountryName,
+			ih.redundantHotelStore,
+			ih.creationDate,
+			ih.createdBy,
+			ih.modifyDate,
+			ih.modifiedBy
+		from
+			itrip_hotel ih
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null">ih.id=#{id} and</if>
+			</trim>
+		</where>
+	</select>
+	
+	<resultMap id="hotelMap" type="Hotel">
+		<id property="id" javaType="java.lang.Long" column="id"/>
+		<result property="hotelName" javaType="java.lang.String" column="hotelName"/>
+		<result property="countryId" javaType="java.lang.Long" column="countryId"/>
+		<result property="provinceId" javaType="java.lang.Long" column="provinceId"/>
+		<result property="cityId" javaType="java.lang.Long" column="cityId"/>
+		<result property="address" javaType="java.lang.String" column="address"/>
+		<result property="details" javaType="java.lang.String" column="details"/>
+		<result property="facilities" javaType="java.lang.String" column="facilities"/>
+		<result property="hotelPolicy" javaType="java.lang.String" column="hotelPolicy"/>
+		<result property="hotelType" javaType="java.lang.Integer" column="hotelType"/>
+		<result property="hotelLevel" javaType="java.lang.Integer" column="hotelLevel"/>
+		<result property="isGroupPurchase" javaType="java.lang.Integer" column="isGroupPurchase"/>
+		<result property="redundantCityName" javaType="java.lang.String" column="redundantCityName"/>
+		<result property="redundantProvinceName" javaType="java.lang.String" column="redundantProvinceName"/>
+		<result property="redundantCountryName" javaType="java.lang.String" column="redundantCountryName"/>
+		<result property="redundantHotelStore" javaType="java.lang.Integer" column="redundantHotelStore"/>
+		<result property="creationDate" javaType="java.util.Date" column="creationDate"/>
+		<result property="createdBy" javaType="java.lang.Long" column="createdBy"/>
+		<result property="modifyDate" javaType="java.util.Date" column="modifyDate"/>
+		<result property="modifiedBy" javaType="java.lang.Long" column="modifiedBy"/>
+	</resultMap>
+</mapper>

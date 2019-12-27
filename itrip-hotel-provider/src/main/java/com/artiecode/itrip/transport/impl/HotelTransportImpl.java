@@ -2,8 +2,10 @@ package com.artiecode.itrip.transport.impl;
 
 import com.artiecode.itrip.hotel.transport.HotelTransport;
 import com.artiecode.itrip.pojo.entity.AreaDic;
+import com.artiecode.itrip.pojo.entity.Hotel;
 import com.artiecode.itrip.pojo.entity.LabelDic;
 import com.artiecode.itrip.service.AreaDicService;
+import com.artiecode.itrip.service.HotelService;
 import com.artiecode.itrip.service.LabelDicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +28,8 @@ public class HotelTransportImpl implements HotelTransport {
 	private AreaDicService areaDicService;
 	@Autowired
 	private LabelDicService labelDicService;
+	@Autowired
+	private HotelService hotelService;
 
 	/**
 	 * <b>根据是否是中国查询对应的热门城市</b>
@@ -46,5 +50,16 @@ public class HotelTransportImpl implements HotelTransport {
 	@RequestMapping(value = "/queryhotelfeature", method = RequestMethod.GET)
 	public List<LabelDic> queryHotelFeature() throws Exception {
 		return labelDicService.queryHotelFeature();
+	}
+
+	/**
+	 * <b>根据酒店id查询酒店特色、商圈、酒店名称</b>
+	 * @param hotelId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/getvideodesc", method = RequestMethod.POST)
+	public Hotel queryHotelVideoDescByHotelId(@RequestParam Long hotelId) throws Exception {
+		return hotelService.queryHotelVideoDescByHotelId(hotelId);
 	}
 }

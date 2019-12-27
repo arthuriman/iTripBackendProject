@@ -1,6 +1,7 @@
 package com.artiecode.itrip.hotel.transport;
 
 import com.artiecode.itrip.pojo.entity.AreaDic;
+import com.artiecode.itrip.pojo.entity.Hotel;
 import com.artiecode.itrip.pojo.entity.LabelDic;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,4 +35,13 @@ public interface HotelTransport {
 	 */
 	@RequestMapping(value = "/queryhotelfeature", method = RequestMethod.GET)
 	List<LabelDic> queryHotelFeature() throws Exception;
+
+	/**
+	 * <b>根据酒店id查询酒店特色、商圈、酒店名称</b>
+	 * @param hotelId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/getvideodesc", method = RequestMethod.POST)
+	Hotel queryHotelVideoDescByHotelId(@RequestParam Long hotelId) throws Exception;
 }

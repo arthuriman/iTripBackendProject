@@ -4,6 +4,7 @@ import com.artiecode.itrip.base.controller.BaseController;
 import com.artiecode.itrip.base.enums.SuccessEnum;
 import com.artiecode.itrip.hotel.transport.HotelTransport;
 import com.artiecode.itrip.pojo.entity.AreaDic;
+import com.artiecode.itrip.pojo.entity.Hotel;
 import com.artiecode.itrip.pojo.entity.LabelDic;
 import com.artiecode.itrip.pojo.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,17 @@ public class HotelController extends BaseController {
 	public ResponseResult<Object> queryHotelFeature() throws Exception {
 		List<LabelDic> labelDicList = hotelTransport.queryHotelFeature();
 		return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, labelDicList);
+	}
+
+	/**
+	 * <b>根据酒店id查询酒店特色、商圈、酒店名称</b>
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/getvideodesc/{hotelId}", method = RequestMethod.GET)
+	public ResponseResult<Object> getVideoDesc(@PathVariable("hotelId") Long hotelId) throws Exception {
+		// 根据酒店id查询具体的酒店对象
+		Hotel hotel = hotelTransport.queryHotelVideoDescByHotelId(hotelId);
+		return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, hotel);
 	}
 }
