@@ -1,5 +1,6 @@
 package com.artiecode.itrip.service;
 
+import com.artiecode.itrip.pojo.entity.HotelImage;
 import com.artiecode.itrip.pojo.vo.HotelRoomVO;
 import com.artiecode.itrip.pojo.vo.SearchHotelRoomVO;
 
@@ -19,4 +20,12 @@ public interface HotelRoomService {
 	 * @throws Exception
 	 */
 	List<HotelRoomVO> queryHotelRoomByHotel(SearchHotelRoomVO searchHotelRoomVO) throws Exception;
+
+	/**
+	 * <b>根据targetId和typeId获得酒店图片列表</b>
+	 * @param targetId
+	 * @param typeId
+	 * @return
+	 */
+	List<HotelImage> getImgByTargetIdAndTypeId(Long targetId, String typeId) throws Exception;
 }

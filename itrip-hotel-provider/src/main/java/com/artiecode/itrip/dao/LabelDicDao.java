@@ -20,4 +20,6 @@ public interface LabelDicDao {
 	 * @return
 	 */
 	List<LabelDic> findLabelDicListByQuery(Map<String, Object> queryMap) throws Exception;
+
+	List<LabelDic> getHotelFeatureByHotelId(Long hotelId) throws Exception;
 }

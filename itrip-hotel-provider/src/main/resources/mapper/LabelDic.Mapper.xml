@@ -21,6 +21,19 @@
 			</trim>
 		</where>
 	</select>
+
+	<select id="getHotelFeatureByHotelId" parameterType="java.lang.Long" resultMap="labelDicMap">
+		select
+			ild.id,
+			ild.name,
+			ild.description
+		from
+			itrip_hotel_feature ihf, itrip_label_dic ild
+		where
+			ihf.featureId=ild.id
+		and
+			ihf.hotelId=#{id}
+	</select>
 	
 	<resultMap id="labelDicMap" type="LabelDic">
 		<id property="id" javaType="java.lang.Long" column="id"/>

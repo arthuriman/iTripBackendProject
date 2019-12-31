@@ -2,7 +2,7 @@ package com.artiecode.itrip.controller;
 
 import com.artiecode.itrip.base.controller.BaseController;
 import com.artiecode.itrip.base.enums.SuccessEnum;
-import com.artiecode.itrip.pojo.vo.ItripHotelVO;
+import com.artiecode.itrip.pojo.vo.HotelVO;
 import com.artiecode.itrip.pojo.vo.ResponseResult;
 import com.artiecode.itrip.pojo.vo.SearchHotCityVO;
 import com.artiecode.itrip.search.transport.SearchTransport;
@@ -38,7 +38,7 @@ public class SearchController extends BaseController {
 		// 校验所传递的数据是否有效
 		if (searchHotCityVO.getCityId() != null && searchHotCityVO.getCityId() > 0
 				&& searchHotCityVO.getCount() != null && searchHotCityVO.getCount() > 0) {
-			List<ItripHotelVO> itripHotelVOList = searchTransport.searchItripHotelListByHotCity(searchHotCityVO);
+			List<HotelVO> itripHotelVOList = searchTransport.searchItripHotelListByHotCity(searchHotCityVO);
 			return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, itripHotelVOList);
 		} else {
 			return new ResponseResult<>(SuccessEnum.SUCCESS_FALSE, "请填写有效信息");

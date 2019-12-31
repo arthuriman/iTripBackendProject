@@ -1,6 +1,6 @@
 package com.artiecode.itrip.service;
 
-import com.artiecode.itrip.pojo.vo.ItripHotelVO;
+import com.artiecode.itrip.pojo.vo.HotelVO;
 import com.artiecode.itrip.pojo.vo.SearchHotCityVO;
 
 import java.util.List;
@@ -19,5 +19,5 @@ public interface SearchService {
 	 * @return
 	 * @throws Exception
 	 */
-	List<ItripHotelVO> searchItripHotelListByHotCity(SearchHotCityVO searchHotCityVO) throws Exception;
+	List<HotelVO> searchItripHotelListByHotCity(SearchHotCityVO searchHotCityVO) throws Exception;
 }

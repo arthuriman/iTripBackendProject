@@ -12,7 +12,7 @@ public class HotelRoomVO implements Serializable{
     private Long id;
     private Long hotelId;
     private String roomTitle;
-    private BigDecimal roomPrice;
+    private Double roomPrice;
     private Long roomBedTypeId;
     private Integer isHavingBreakfast;
     private Integer payType;
@@ -45,11 +45,11 @@ public class HotelRoomVO implements Serializable{
         this.roomTitle = roomTitle;
     }
 
-    public BigDecimal getRoomPrice() {
+    public Double getRoomPrice() {
         return roomPrice;
     }
 
-    public void setRoomPrice(BigDecimal roomPrice) {
+    public void setRoomPrice(Double roomPrice) {
         this.roomPrice = roomPrice;
     }
 

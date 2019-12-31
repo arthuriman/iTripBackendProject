@@ -7,6 +7,8 @@ import com.artiecode.itrip.pojo.entity.AreaDic;
 import com.artiecode.itrip.pojo.entity.Hotel;
 import com.artiecode.itrip.pojo.entity.LabelDic;
 import com.artiecode.itrip.pojo.vo.ResponseResult;
+import com.artiecode.itrip.pojo.vo.SearchDetailsHotelVO;
+import com.artiecode.itrip.pojo.vo.SearchPolicyHotelVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,5 +62,41 @@ public class HotelController extends BaseController {
 		// 根据酒店id查询具体的酒店对象
 		Hotel hotel = hotelTransport.queryHotelVideoDescByHotelId(hotelId);
 		return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, hotel);
+	}
+
+	/**
+	 * <b>根据酒店id查询酒店政策</b>
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/queryhotelpolicy/{hotelId}", method = RequestMethod.GET)
+	public ResponseResult<Object> queryHotelPolicy(@PathVariable("hotelId") Long hotelId) throws Exception {
+		String hotelPolicy = hotelTransport.queryHotelPolicy(hotelId);
+		return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, "", hotelPolicy);
+	}
+
+	/**
+	 * <b>查询酒店详情</b>
+	 * @param hotelId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/queryhoteldetails/{hotelId}", method = RequestMethod.GET)
+	public ResponseResult<Object> queryHotelDetails(@PathVariable("hotelId") Long hotelId) throws Exception {
+		List<SearchDetailsHotelVO> detailsHotelVOList = hotelTransport.queryHotelDetails(hotelId);
+		return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, detailsHotelVOList);
+	}
+
+	/**
+	 * <b>根据酒店id查询酒店设施</b>
+	 * @param hotelId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/queryhotelfacilities/{hotelId}", method = RequestMethod.GET)
+	public ResponseResult<Object> queryHotelFacilities(@PathVariable("hotelId") Long hotelId) throws Exception {
+		String hotelfacilities = hotelTransport.queryHotelFacilities(hotelId);
+		return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, "", hotelfacilities);
 	}
 }

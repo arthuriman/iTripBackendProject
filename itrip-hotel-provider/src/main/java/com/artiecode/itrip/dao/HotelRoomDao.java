@@ -1,5 +1,6 @@
 package com.artiecode.itrip.dao;
 
+import com.artiecode.itrip.pojo.entity.HotelImage;
 import com.artiecode.itrip.pojo.entity.HotelRoom;
 import org.springframework.stereotype.Repository;
 
@@ -21,4 +22,12 @@ public interface HotelRoomDao {
 	 * @throws Exception
 	 */
 	List<HotelRoom> findHotelRoomListByQuery(Map<String, Object> queryMap) throws Exception;
+
+	/**
+	 * <b>根据条件查询节点图片列表</b>
+	 * @param queryMap
+	 * @return
+	 * @throws Exception
+	 */
+	List<HotelImage> findHotelImageListByQuery(Map<String, Object> queryMap) throws Exception;
 }

@@ -1,18 +1,13 @@
 package com.artiecode.itrip.service.impl;
 
-import com.artiecode.itrip.pojo.vo.ItripHotelVO;
+import com.artiecode.itrip.pojo.vo.HotelVO;
 import com.artiecode.itrip.pojo.vo.SearchHotCityVO;
 import com.artiecode.itrip.service.SearchService;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.SolrResponse;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.impl.XMLResponseParser;
 import org.apache.solr.client.solrj.response.QueryResponse;
-import org.apache.solr.common.SolrDocument;
-import org.apache.solr.common.SolrDocumentList;
-import org.apache.solr.common.params.SolrParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,7 +32,7 @@ public class SearchServieImpl implements SearchService {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<ItripHotelVO> searchItripHotelListByHotCity(SearchHotCityVO searchHotCityVO) throws Exception {
+	public List<HotelVO> searchItripHotelListByHotCity(SearchHotCityVO searchHotCityVO) throws Exception {
 		// 对于Spring Boot注入的SolrClient就是HttpSolrClient对象，进行强制类型转换
 		HttpSolrClient httpSolrClient = (HttpSolrClient) solrClient;
 		httpSolrClient.setParser(new XMLResponseParser());
@@ -48,6 +43,6 @@ public class SearchServieImpl implements SearchService {
 		// 使用SolrClient进行查询，QueryResponse
 		QueryResponse queryResponsey = solrClient.query(solrQuery);
 		// 通过使用QueryResponse提取结果
-		return queryResponsey.getBeans(ItripHotelVO.class);
+		return queryResponsey.getBeans(HotelVO.class);
 	}
 }

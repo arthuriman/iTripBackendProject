@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.artiecode.itrip.dao.CommentDao">
+	<select id="findCommentByQuery" parameterType="java.util.Map" resultMap="commentMap">
+		select
+			ic.id,
+			ic.hotelId,
+			ic.productId,
+			ic.orderId,
+			ic.productType,
+			ic.content,
+			ic.userId,
+			ic.isHavingImg,
+			ic.positionScore,
+			ic.facilitiesScore,
+			ic.serviceScore,
+			ic.hygieneScore,
+			ic.score,
+			ic.tripMode,
+			ic.isOk
+		from
+			itrip_comment ic
+		<where>
+			<trim suffixOverrides="and">
+				<if test="hotelId != null">ic.hotelId=#{hotelId} and</if>
+				<if test="isHavingImg != null">ic.isHavingImg=#{isHavingImg} and</if>
+				<if test="isOk != null">ic.isOk=#{isOk} and</if>
+			</trim>
+		</where>
+		<if test="start != null">
+			limit #{start}, #{size}
+		</if>
+	</select>
+	
+	<select id="findScoreCommentByHotelId" parameterType="java.lang.Long" resultMap="scoreCommentMap">
+		select
+			format(avg(ic.positionScore),1) avgPositionScore,
+			format(avg(ic.facilitiesScore),1) avgFacilitiesScore,
+			format(avg(ic.serviceScore),1) avgServiceScore,
+			format(avg(ic.hygieneScore),1) avgHygieneScore,
+			format(avg(ic.score),1) avgScore
+		from
+			itrip_comment ic
+		where
+			ic.hotelId=#{hotelId}
+	</select>
+	
+	<resultMap id="commentMap" type="Comment">
+		<id property="id" javaType="java.lang.Long" column="id"/>
+		<result property="hotelId" javaType="java.lang.Long" column="hotelId"/>
+		<result property="productId" javaType="java.lang.Long" column="productId"/>
+		<result property="orderId" javaType="java.lang.Long" column="orderId"/>
+		<result property="productType" javaType="java.lang.Integer" column="productType"/>
+		<result property="content" javaType="java.lang.String" column="content"/>
+		<result property="userId" javaType="java.lang.Long" column="userId"/>
+		<result property="isHavingImg" javaType="java.lang.Integer" column="isHavingImg"/>
+		<result property="positionScore" javaType="java.lang.Integer" column="positionScore"/>
+		<result property="facilitiesScore" javaType="java.lang.Integer" column="facilitiesScore"/>
+		<result property="serviceScore" javaType="java.lang.Integer" column="serviceScore"/>
+		<result property="hygieneScore" javaType="java.lang.Integer" column="hygieneScore"/>
+		<result property="score" javaType="java.lang.Integer" column="score"/>
+		<result property="tripMode" javaType="java.lang.Long" column="tripMode"/>
+		<result property="isOk" javaType="java.lang.Integer" column="isOk"/>
+	</resultMap>
+	
+	<resultMap id="scoreCommentMap" type="ScoreComment">
+		<result property="avgPositionScore" javaType="java.lang.Double" column="avgPositionScore"/>
+		<result property="avgFacilitiesScore" javaType="java.lang.Double" column="avgFacilitiesScore"/>
+		<result property="avgServiceScore" javaType="java.lang.Double" column="avgServiceScore"/>
+		<result property="avgHygieneScore" javaType="java.lang.Double" column="avgHygieneScore"/>
+		<result property="avgScore" javaType="java.lang.Double" column="avgScore"/>
+	</resultMap>
+</mapper>

@@ -48,6 +48,23 @@
         </where>
 	</select>
 
+	<select id="findHotelImageListByQuery" parameterType="java.util.Map" resultMap="hotelImageMap">
+		select
+			ii.id,
+			ii.type,
+			ii.targetId,
+			ii.position,
+			ii.imgUrl
+		from
+			itrip_image ii
+		<where>
+			<trim suffixOverrides="and">
+				<if test="targetId != null">ii.targetId=#{targetId} and</if>
+				<if test="typeId != null">ii.type=#{typeId} and</if>
+			</trim>
+		</where>
+	</select>
+
 	<resultMap id="hotelRoomMap" type="HotelRoom">
 		<id property="id" javaType="java.lang.Long" column="id"/>
 		<result property="hotelId" javaType="java.lang.Long" column="hotelId"/>
@@ -60,5 +77,13 @@
 		<result property="isBook" javaType="java.lang.Integer" column="isBook"/>
 		<result property="isCancel" javaType="java.lang.Integer" column="isCancel"/>
 		<result property="isTimelyResponse" javaType="java.lang.Integer" column="isTimelyResponse"/>
+	</resultMap>
+	
+	<resultMap id="hotelImageMap" type="HotelImage">
+		<id property="id" javaType="java.lang.Long" column="id"/>
+		<result property="type" javaType="java.lang.String" column="type"/>
+		<result property="targetId" javaType="java.lang.Long" column="targetId"/>
+		<result property="position" javaType="java.lang.Integer" column="position"/>
+		<result property="imgUrl" javaType="java.lang.String" column="imgUrl"/>
 	</resultMap>
 </mapper>

@@ -36,6 +36,12 @@
 		</dependency>
 		<!-- 配置Consumer远程调用Provider所使用的OpenFeign的依赖关系 [END] -->
 
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.62</version>
+		</dependency>
+
 		<!-- 配置使用Swagger和Spring Boot结合的依赖关系 [BEGIN] -->
 		<dependency>
 			<groupId>io.springfox</groupId>

@@ -1,6 +1,6 @@
 package com.artiecode.itrip.transport.impl;
 
-import com.artiecode.itrip.pojo.vo.ItripHotelVO;
+import com.artiecode.itrip.pojo.vo.HotelVO;
 import com.artiecode.itrip.pojo.vo.SearchHotCityVO;
 import com.artiecode.itrip.search.transport.SearchTransport;
 import com.artiecode.itrip.service.SearchService;
@@ -31,7 +31,7 @@ public class SearchTransportImpl implements SearchTransport {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/searchItripHotelListByHotCity", method = RequestMethod.POST)
-	public List<ItripHotelVO> searchItripHotelListByHotCity(@RequestBody SearchHotCityVO searchHotCityVO) throws Exception {
+	public List<HotelVO> searchItripHotelListByHotCity(@RequestBody SearchHotCityVO searchHotCityVO) throws Exception {
 		return searchService.searchItripHotelListByHotCity(searchHotCityVO);
 	}
 }

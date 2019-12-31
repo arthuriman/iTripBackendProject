@@ -1,6 +1,7 @@
 package com.artiecode.itrip.service.impl;
 
 import com.artiecode.itrip.dao.HotelRoomDao;
+import com.artiecode.itrip.pojo.entity.HotelImage;
 import com.artiecode.itrip.pojo.entity.HotelRoom;
 import com.artiecode.itrip.pojo.vo.HotelRoomVO;
 import com.artiecode.itrip.pojo.vo.SearchHotelRoomVO;
@@ -59,5 +60,21 @@ public class HotelRoomServiceImpl implements HotelRoomService {
 			}
 		}
 		return hotelRoomVOList;
+	}
+
+	/**
+	 * <b>根据targetId和typeId获得酒店图片列表</b>
+	 * @param targetId
+	 * @param typeId
+	 * @return
+	 */
+	public List<HotelImage> getImgByTargetIdAndTypeId(Long targetId, String typeId) throws Exception {
+		// 封装查询参数
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+		queryMap.put("targetId", targetId);
+		queryMap.put("typeId", typeId);
+
+		List<HotelImage> hotelImageList = hotelRoomDao.findHotelImageListByQuery(queryMap);
+		return hotelImageList;
 	}
 }

@@ -5,6 +5,8 @@ spring:
   ### 项目应用名
   application:
     name: itrip-search-consumer
+  main:
+    allow-bean-definition-overriding: true
 #hystrix的超时时间
 hystrix:
   command:

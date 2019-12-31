@@ -1,6 +1,7 @@
 package com.artiecode.itrip.service;
 
 import com.artiecode.itrip.pojo.entity.LabelDic;
+import com.artiecode.itrip.pojo.vo.LabelDicVO;
 
 import java.util.List;
 
@@ -17,4 +18,12 @@ public interface LabelDicService {
 	 * @throws Exception
 	 */
 	List<LabelDic> queryHotelFeature() throws Exception;
+
+	/**
+	 * <b>根据父级主键查询视图列表</b>
+	 * @param parentId
+	 * @return
+	 * @throws Exception
+	 */
+	List<LabelDicVO> queryLabelDicVOListByParent(Long parentId) throws Exception;
 }

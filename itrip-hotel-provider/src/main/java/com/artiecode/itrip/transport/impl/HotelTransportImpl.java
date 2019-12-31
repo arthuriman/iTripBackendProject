@@ -4,6 +4,8 @@ import com.artiecode.itrip.hotel.transport.HotelTransport;
 import com.artiecode.itrip.pojo.entity.AreaDic;
 import com.artiecode.itrip.pojo.entity.Hotel;
 import com.artiecode.itrip.pojo.entity.LabelDic;
+import com.artiecode.itrip.pojo.vo.SearchDetailsHotelVO;
+import com.artiecode.itrip.pojo.vo.SearchPolicyHotelVO;
 import com.artiecode.itrip.service.AreaDicService;
 import com.artiecode.itrip.service.HotelService;
 import com.artiecode.itrip.service.LabelDicService;
@@ -61,5 +63,38 @@ public class HotelTransportImpl implements HotelTransport {
 	@RequestMapping(value = "/getvideodesc", method = RequestMethod.POST)
 	public Hotel queryHotelVideoDescByHotelId(@RequestParam Long hotelId) throws Exception {
 		return hotelService.queryHotelVideoDescByHotelId(hotelId);
+	}
+
+	/**
+	 * <b>根据酒店id查询酒店政策</b>
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/queryhotelpolicy", method = RequestMethod.POST)
+	public String queryHotelPolicy(@RequestParam Long id) throws Exception {
+		return hotelService.queryHotelPolicy(id);
+	}
+
+	/**
+	 * <b>查询酒店详情</b>
+	 * @param hotelId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/queryhoteldetails", method = RequestMethod.POST)
+	public List<SearchDetailsHotelVO> queryHotelDetails(@RequestParam Long hotelId) throws Exception {
+		return hotelService.queryHotelDetails(hotelId);
+	}
+
+	/**
+	 * <b>根据酒店id查询酒店设施</b>
+	 * @param hotelId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/queryhotelfacilities")
+	public String queryHotelFacilities(@RequestParam Long hotelId) throws Exception {
+		return hotelService.queryHotelFacilities(hotelId);
 	}
 }
