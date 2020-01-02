@@ -1,6 +1,9 @@
 package com.artiecode.itrip.service;
 
 import com.artiecode.itrip.pojo.entity.User;
+import com.artiecode.itrip.pojo.entity.UserLinkUser;
+
+import java.util.List;
 
 /**
  * <b>用户子项目业务层接口</b>
@@ -42,4 +45,6 @@ public interface UserService {
 	 * @throws Exception
 	 */
 	User getUserForLogin(String userCode, String userPassword) throws Exception;
+
+	List<UserLinkUser> getLinkUserListByLogin(String userCode) throws Exception;
 }

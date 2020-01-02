@@ -1,8 +1,11 @@
 package com.artiecode.itrip.user.transport;
 
 import com.artiecode.itrip.pojo.entity.User;
+import com.artiecode.itrip.pojo.entity.UserLinkUser;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <b>用户模块传输层接口</b>
@@ -50,4 +53,7 @@ public interface UserTransport {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	User getUserForLogin(@RequestParam String userCode, @RequestParam String userPassword) throws Exception;
+
+	@RequestMapping(value = "/queryuserlinkuser", method = RequestMethod.POST)
+	List<UserLinkUser> getLinkUserListByLogin(@RequestParam String userCode) throws Exception;
 }

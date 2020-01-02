@@ -1,6 +1,7 @@
 package com.artiecode.itrip.dao;
 
 import com.artiecode.itrip.pojo.entity.User;
+import com.artiecode.itrip.pojo.entity.UserLinkUser;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -35,4 +36,6 @@ public interface UserDao {
 	 * @throws Exception
 	 */
 	void updateUser(User user) throws Exception;
+
+	List<UserLinkUser> findLinkUserListByQuery(Map<String, Object> queryMap) throws Exception;
 }

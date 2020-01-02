@@ -1,10 +1,13 @@
 package com.artiecode.itrip.transport.impl;
 
 import com.artiecode.itrip.pojo.entity.User;
+import com.artiecode.itrip.pojo.entity.UserLinkUser;
 import com.artiecode.itrip.service.UserService;
 import com.artiecode.itrip.user.transport.UserTransport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <b>用户模块传输层接口</b>
@@ -62,5 +65,10 @@ public class UserTransportImpl implements UserTransport {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public User getUserForLogin(@RequestParam String userCode, @RequestParam String userPassword) throws Exception {
 		return userService.getUserForLogin(userCode, userPassword);
+	}
+
+	@RequestMapping(value = "/queryuserlinkuser", method = RequestMethod.POST)
+	public List<UserLinkUser> getLinkUserListByLogin(@RequestParam String userCode) throws Exception {
+		return userService.getLinkUserListByLogin(userCode);
 	}
 }

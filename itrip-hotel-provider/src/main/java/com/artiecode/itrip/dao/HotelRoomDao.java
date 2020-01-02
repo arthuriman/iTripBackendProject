@@ -30,4 +30,12 @@ public interface HotelRoomDao {
 	 * @throws Exception
 	 */
 	List<HotelImage> findHotelImageListByQuery(Map<String, Object> queryMap) throws Exception;
+
+	/**
+	 * <b>查询房间总库存</b>
+	 * @param roomId
+	 * @return
+	 * @throws Exception
+	 */
+	Integer findTotalRoomStore(Long roomId) throws Exception;
 }

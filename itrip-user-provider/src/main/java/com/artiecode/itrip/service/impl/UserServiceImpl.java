@@ -2,6 +2,7 @@ package com.artiecode.itrip.service.impl;
 
 import com.artiecode.itrip.dao.UserDao;
 import com.artiecode.itrip.pojo.entity.User;
+import com.artiecode.itrip.pojo.entity.UserLinkUser;
 import com.artiecode.itrip.service.UserService;
 import com.artiecode.itrip.util.ActiveCodeUtil;
 import com.artiecode.itrip.util.ConstantUtil;
@@ -130,5 +131,13 @@ public class UserServiceImpl implements UserService {
 			return userList.get(0);
 		}
 		return null;
+	}
+
+	public List<UserLinkUser> getLinkUserListByLogin(String userCode) throws Exception {
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+		queryMap.put("userCode", userCode);
+
+		List<UserLinkUser> linkUserList = userDao.findLinkUserListByQuery(queryMap);
+		return linkUserList;
 	}
 }

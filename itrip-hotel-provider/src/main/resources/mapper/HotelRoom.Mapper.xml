@@ -65,6 +65,10 @@
 		</where>
 	</select>
 
+	<select id="findTotalRoomStore" parameterType="java.lang.Long" resultType="java.lang.Integer">
+		select store from itrip_product_store ips where productId=#{roomId}
+	</select>
+
 	<resultMap id="hotelRoomMap" type="HotelRoom">
 		<id property="id" javaType="java.lang.Long" column="id"/>
 		<result property="hotelId" javaType="java.lang.Long" column="hotelId"/>

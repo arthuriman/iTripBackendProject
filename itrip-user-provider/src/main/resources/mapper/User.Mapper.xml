@@ -42,6 +42,28 @@
 		</where>
 	</update>
 
+	<select id="findLinkUserListByQuery" parameterType="java.util.Map" resultMap="linkUserMap">
+		select
+			iulu.id,
+			iulu.linkUserName,
+			iulu.linkIdCard,
+			iulu.linkPhone,
+			iulu.userId,
+			iulu.creationDate,
+			iulu.createdBy,
+			iulu.modifyDate,
+			iulu.modifiedBy
+		from
+			itrip_user_link_user iulu join itrip_user iu on iulu.userId=iu.id
+		<where>
+			<trim suffixOverrides="and">
+				<if test="userCode != null">
+					iu.userCode=#{userCode} and
+				</if>
+			</trim>
+		</where>
+	</select>
+
 	<resultMap id="userMap" type="User">
 		<id property="id" javaType="java.lang.Long" column="id"/>
 		<result property="userCode" javaType="java.lang.String" column="userCode"/>
@@ -49,5 +71,14 @@
 		<result property="userType" javaType="java.lang.Integer" column="userType"/>
 		<result property="flatID" javaType="java.lang.Long" column="flatID"/>
 		<result property="userName" javaType="java.lang.String" column="userName"/>
+	</resultMap>
+
+	<resultMap id="linkUserMap" type="UserLinkUser">
+		<id property="id" javaType="java.lang.Long" column="id"/>
+		<result property="linkUserName" javaType="java.lang.String" column="linkUserName"/>
+		<result property="linkIdCard" javaType="java.lang.String" column="linkIdCard"/>
+		<result property="linkPhone" javaType="java.lang.String" column="linkPhone"/>
+		<result property="userId" javaType="java.lang.Long" column="userId"/>
+		<result property="linkIdCardType" javaType="java.lang.Integer" column="linkIdCardType"/>
 	</resultMap>
 </mapper>

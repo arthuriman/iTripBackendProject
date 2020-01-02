@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.artiecode.itrip.dao.HotelOrderDao">
+	<select id="findStoreByPreOrder" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select
+			min(ihts.store) store
+		from
+			itrip_hotel_temp_store ihts
+		where
+			ihts.hotelId=#{hotelId}
+		and
+			ihts.roomId=#{roomId}
+		and
+			DATE_FORMAT(ihts.recordDate, '%Y-%m-%d') &gt;= DATE_FORMAT(#{checkInDate}, '%Y-%m-%d')
+		and
+			DATE_FORMAT(ihts.recordDate, '%Y-%m-%d') &lt;= DATE_FORMAT(#{checkOutDate}, '%Y-%m-%d')
+	</select>
+
+	<select id="findCountByOrderNoPay" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select
+			IF(ISNULL(sum(iho.count)), 0, sum(iho.count)) count
+		from
+			itrip_hotel_order iho
+		where
+			iho.hotelId=#{hotelId}
+		and
+			iho.roomId=#{roomId}
+		and
+			iho.orderStatus=0
+		and
+			DATE_FORMAT(iho.checkOutDate, '%Y-%m-%d') &gt;= DATE_FORMAT(#{checkInDate}, '%Y-%m-%d')
+		and
+			DATE_FORMAT(iho.checkInDate, '%Y-%m-%d') &lt;= DATE_FORMAT(#{checkOutDate}, '%Y-%m-%d')
+	</select>
+</mapper>
