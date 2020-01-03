@@ -140,4 +140,16 @@ public class UserServiceImpl implements UserService {
 		List<UserLinkUser> linkUserList = userDao.findLinkUserListByQuery(queryMap);
 		return linkUserList;
 	}
+
+	public User getUserByUserCode(String userCode) throws Exception {
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+		queryMap.put("userCode", userCode);
+		// 进行查询
+		List<User> userList = userDao.findUserListByQuery(queryMap);
+		System.out.println(userList);
+		if (userList != null && userList.size() > 0) {
+			return userList.get(0);
+		}
+		return null;
+	}
 }

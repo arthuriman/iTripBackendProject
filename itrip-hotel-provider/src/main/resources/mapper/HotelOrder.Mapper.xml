@@ -33,4 +33,88 @@
 		and
 			DATE_FORMAT(iho.checkInDate, '%Y-%m-%d') &lt;= DATE_FORMAT(#{checkOutDate}, '%Y-%m-%d')
 	</select>
+	
+	<insert id="saveOrder" parameterType="HotelOrder">
+		insert into itrip_hotel_order(
+			userId, orderType, orderNo, hotelId,
+			hotelName, roomId, count, bookingDays,
+			checkInDate, checkOutDate, orderStatus, payAmount,
+			payType, noticePhone, noticeEmail, specialRequirement,
+			isNeedInvoice, invoiceType, invoiceHead, linkUserName, creationDate
+		) values(
+			#{userId}, #{orderType}, #{orderNo}, #{hotelId},
+			#{hotelName}, #{roomId}, #{count}, #{bookingDays},
+			#{checkInDate}, #{checkOutDate}, #{orderStatus}, #{payAmount},
+			#{payType}, #{noticePhone}, #{noticeEmail}, #{specialRequirement},
+			#{isNeedInvoice}, #{invoiceType}, #{invoiceHead}, #{linkUserName}, #{creationDate}
+		)
+	</insert>
+	
+	<select id="findOrderByQuery" parameterType="java.util.Map" resultMap="hotelOrderMap">
+		select
+			id,
+			userId,
+			orderType,
+			orderNo,
+			tradeNo,
+			hotelId,
+			hotelName,
+			roomId,
+			count,
+			bookingDays,
+			checkInDate,
+			checkOutDate,
+			orderStatus,
+			payAmount,
+			payType,
+			noticePhone,
+			noticeEmail,
+			specialRequirement,
+			isNeedInvoice,
+			invoiceType,
+			invoiceHead,
+			linkUserName,
+			bookType,
+			creationDate,
+			createdBy,
+			modifyDate,
+			modifiedBy
+		from
+			itrip_hotel_order iho
+		<where>
+			<trim suffixOverrides="and">
+				<if test="orderNo != null">iho.orderNo=#{orderNo} and</if>
+			</trim>
+		</where>
+	</select>
+	
+	<resultMap id="hotelOrderMap" type="HotelOrder">
+		<id property="id" javaType="java.lang.Long" column="id"/>
+		<result property="userId" javaType="java.lang.Long" column="userId"/>
+		<result property="orderType" javaType="java.lang.Integer" column="orderType"/>
+		<result property="orderNo" javaType="java.lang.String" column="orderNo"/>
+		<result property="tradeNo" javaType="java.lang.String" column="tradeNo"/>
+		<result property="hotelId" javaType="java.lang.Long" column="hotelId"/>
+		<result property="hotelName" javaType="java.lang.String" column="hotelName"/>
+		<result property="roomId" javaType="java.lang.Long" column="roomId"/>
+		<result property="count" javaType="java.lang.Integer" column="count"/>
+		<result property="bookingDays" javaType="java.lang.Integer" column="bookingDays"/>
+		<result property="checkInDate" javaType="java.util.Date" column="checkInDate"/>
+		<result property="checkOutDate" javaType="java.util.Date" column="checkOutDate"/>
+		<result property="orderStatus" javaType="java.lang.Integer" column="orderStatus"/>
+		<result property="payAmount" javaType="java.lang.Double" column="payAmount"/>
+		<result property="payType" javaType="java.lang.Integer" column="payType"/>
+		<result property="noticePhone" javaType="java.lang.String" column="noticePhone"/>
+		<result property="noticeEmail" javaType="java.lang.String" column="noticeEmail"/>
+		<result property="specialRequirement" javaType="java.lang.String" column="specialRequirement"/>
+		<result property="isNeedInvoice" javaType="java.lang.Integer" column="isNeedInvoice"/>
+		<result property="invoiceType" javaType="java.lang.Integer" column="invoiceType"/>
+		<result property="invoiceHead" javaType="java.lang.String" column="invoiceHead"/>
+		<result property="linkUserName" javaType="java.lang.String" column="linkUserName"/>
+		<result property="bookType" javaType="java.lang.Integer" column="bookType"/>
+		<result property="creationDate" javaType="java.util.Date" column="creationDate"/>
+		<result property="createdBy" javaType="java.lang.Long" column="createdBy"/>
+		<result property="modifyDate" javaType="java.util.Date" column="modifyDate"/>
+		<result property="modifiedBy" javaType="java.lang.Long" column="modifiedBy"/>
+	</resultMap>
 </mapper>

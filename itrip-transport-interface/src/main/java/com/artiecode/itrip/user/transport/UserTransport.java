@@ -56,4 +56,7 @@ public interface UserTransport {
 
 	@RequestMapping(value = "/queryuserlinkuser", method = RequestMethod.POST)
 	List<UserLinkUser> getLinkUserListByLogin(@RequestParam String userCode) throws Exception;
+
+	@RequestMapping(value = "/queryUserByUserCode", method = RequestMethod.POST)
+	User getUserByUserCode(@RequestParam String userCode) throws Exception;
 }

@@ -47,4 +47,6 @@ public interface UserService {
 	User getUserForLogin(String userCode, String userPassword) throws Exception;
 
 	List<UserLinkUser> getLinkUserListByLogin(String userCode) throws Exception;
+
+	User getUserByUserCode(String userCode) throws Exception;
 }

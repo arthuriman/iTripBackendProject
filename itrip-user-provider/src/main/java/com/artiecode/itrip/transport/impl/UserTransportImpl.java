@@ -71,4 +71,9 @@ public class UserTransportImpl implements UserTransport {
 	public List<UserLinkUser> getLinkUserListByLogin(@RequestParam String userCode) throws Exception {
 		return userService.getLinkUserListByLogin(userCode);
 	}
+
+	@RequestMapping(value = "/queryUserByUserCode", method = RequestMethod.POST)
+	public User getUserByUserCode(@RequestParam String userCode) throws Exception {
+		return userService.getUserByUserCode(userCode);
+	}
 }
