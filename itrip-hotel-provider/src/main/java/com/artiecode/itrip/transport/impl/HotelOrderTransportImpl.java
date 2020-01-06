@@ -1,16 +1,13 @@
 package com.artiecode.itrip.transport.impl;
 
 import com.artiecode.itrip.hotel.transport.HotelOrderTransport;
-import com.artiecode.itrip.pojo.vo.HotelOrderAddVO;
-import com.artiecode.itrip.pojo.vo.RoomStoreVO;
-import com.artiecode.itrip.pojo.vo.ValidateRoomStoreVO;
+import com.artiecode.itrip.pojo.entity.HotelOrder;
+import com.artiecode.itrip.pojo.vo.*;
 import com.artiecode.itrip.service.HotelOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController("hotelOrderTransport")
@@ -39,5 +36,38 @@ public class HotelOrderTransportImpl implements HotelOrderTransport {
 	@RequestMapping(value = "/addhotelorder", method = RequestMethod.POST)
 	public Map<String, Object> addHotelOrder(@RequestBody HotelOrderAddVO hotelOrderAddVO) throws Exception {
 		return hotelOrderService.addHotelOrder(hotelOrderAddVO);
+	}
+
+	/**
+	 * <b>根据订单ID查看个人订单详情</b>
+	 * @param orderId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/getpersonalorderinfo", method = RequestMethod.POST)
+	public List<HotelOrder> getPersonalOrderInfo(@RequestParam Long orderId) throws Exception {
+		return hotelOrderService.getPersonalOrderInfo(orderId);
+	}
+
+	/**
+	 * <b>根据订单ID查看个人订单详情-房型相关信息</b>
+	 * @param orderId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/getpersonalorderroominfo", method = RequestMethod.POST)
+	public PersonalOrderRoomVO getPersonalOrderRoomInfo(@RequestParam Long orderId) throws Exception {
+		return hotelOrderService.getPersonalOrderRoomInfo(orderId);
+	}
+
+	/**
+	 * <b>根据订单ID获取订单信息</b>
+	 * @param orderId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/queryOrderById", method = RequestMethod.POST)
+	public ModifyHotelOrderVO queryOrderByID(@RequestParam Long orderId) throws Exception {
+		return hotelOrderService.queryOrderById(orderId);
 	}
 }

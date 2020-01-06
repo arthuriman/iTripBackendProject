@@ -1,13 +1,11 @@
 package com.artiecode.itrip.hotel.transport;
 
-import com.artiecode.itrip.pojo.vo.HotelOrderAddVO;
-import com.artiecode.itrip.pojo.vo.RoomStoreVO;
-import com.artiecode.itrip.pojo.vo.ValidateRoomStoreVO;
+import com.artiecode.itrip.pojo.entity.HotelOrder;
+import com.artiecode.itrip.pojo.vo.*;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,4 +34,31 @@ public interface HotelOrderTransport {
 	 */
 	@RequestMapping(value = "/addhotelorder", method = RequestMethod.POST)
 	Map<String, Object> addHotelOrder(@RequestBody HotelOrderAddVO hotelOrderAddVO) throws Exception;
+
+	/**
+	 * <b>根据订单ID查看个人订单详情</b>
+	 * @param orderId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/getpersonalorderinfo", method = RequestMethod.POST)
+	List<HotelOrder> getPersonalOrderInfo(@RequestParam Long orderId) throws Exception;
+
+	/**
+	 * <b>根据订单ID查看个人订单详情-房型相关信息</b>
+	 * @param orderId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/getpersonalorderroominfo", method = RequestMethod.POST)
+	PersonalOrderRoomVO getPersonalOrderRoomInfo(@RequestParam Long orderId) throws Exception;
+
+	/**
+	 * <b>根据订单ID获取订单信息</b>
+	 * @param orderId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/queryOrderById", method = RequestMethod.POST)
+	ModifyHotelOrderVO queryOrderByID(@RequestParam Long orderId) throws Exception;
 }

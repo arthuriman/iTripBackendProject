@@ -1,6 +1,7 @@
 package com.artiecode.itrip.dao;
 
 import com.artiecode.itrip.pojo.entity.HotelOrder;
+import com.artiecode.itrip.pojo.entity.OrderLinkUser;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -33,4 +34,6 @@ public interface HotelOrderDao {
 	void saveOrder(HotelOrder hotelOrder) throws Exception;
 
 	List<HotelOrder> findOrderByQuery(Map<String, Object> queryMap) throws Exception;
+
+	List<OrderLinkUser> findOrderLinkUserListByQuery(Map<String, Object> queryMap) throws Exception;
 }

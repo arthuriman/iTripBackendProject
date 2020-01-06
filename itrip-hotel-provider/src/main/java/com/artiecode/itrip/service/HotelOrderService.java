@@ -1,9 +1,9 @@
 package com.artiecode.itrip.service;
 
-import com.artiecode.itrip.pojo.vo.HotelOrderAddVO;
-import com.artiecode.itrip.pojo.vo.RoomStoreVO;
-import com.artiecode.itrip.pojo.vo.ValidateRoomStoreVO;
+import com.artiecode.itrip.pojo.entity.HotelOrder;
+import com.artiecode.itrip.pojo.vo.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,4 +29,28 @@ public interface HotelOrderService {
 	 * @throws Exception
 	 */
 	Map<String, Object> addHotelOrder(HotelOrderAddVO hotelOrderAddVO) throws Exception;
+
+	/**
+	 * <b>根据订单ID查看个人订单详情</b>
+	 * @param orderId
+	 * @return
+	 * @throws Exception
+	 */
+	List<HotelOrder> getPersonalOrderInfo(Long orderId) throws Exception;
+
+	/**
+	 * <b>根据订单ID查看个人订单详情-房型相关信息</b>
+	 * @param orderId
+	 * @return
+	 * @throws Exception
+	 */
+	PersonalOrderRoomVO getPersonalOrderRoomInfo(Long orderId) throws Exception;
+
+	/**
+	 * <b>根据订单ID获取订单信息</b>
+	 * @param orderId
+	 * @return
+	 * @throws Exception
+	 */
+	ModifyHotelOrderVO queryOrderById(Long orderId) throws Exception;
 }

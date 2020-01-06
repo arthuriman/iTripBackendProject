@@ -87,6 +87,25 @@
 			</trim>
 		</where>
 	</select>
+
+	<select id="findOrderLinkUserListByQuery" parameterType="java.util.Map" resultMap="orderLinkUserMap">
+		select
+			iolu.id,
+			iolu.orderId,
+			iolu.linkUserId,
+			iolu.linkUserName,
+			iolu.creationDate,
+			iolu.createdBy,
+			iolu.modifiedBy,
+			iolu.modifiedBy
+		from
+			itrip_order_link_user iolu
+		<where>
+			<trim suffixOverrides="and">
+				<if test="orderId != null">iolu.orderId=#{orderId} and</if>
+			</trim>
+		</where>
+	</select>
 	
 	<resultMap id="hotelOrderMap" type="HotelOrder">
 		<id property="id" javaType="java.lang.Long" column="id"/>
@@ -112,6 +131,17 @@
 		<result property="invoiceHead" javaType="java.lang.String" column="invoiceHead"/>
 		<result property="linkUserName" javaType="java.lang.String" column="linkUserName"/>
 		<result property="bookType" javaType="java.lang.Integer" column="bookType"/>
+		<result property="creationDate" javaType="java.util.Date" column="creationDate"/>
+		<result property="createdBy" javaType="java.lang.Long" column="createdBy"/>
+		<result property="modifyDate" javaType="java.util.Date" column="modifyDate"/>
+		<result property="modifiedBy" javaType="java.lang.Long" column="modifiedBy"/>
+	</resultMap>
+	
+	<resultMap id="orderLinkUserMap" type="OrderLinkUser">
+		<id property="id" javaType="java.lang.Long" column="id"/>
+		<result property="orderId" javaType="java.lang.Long" column="orderId"/>
+		<result property="linkUserId" javaType="java.lang.Long" column="linkUserId"/>
+		<result property="linkUserName" javaType="java.lang.String" column="linkUserName"/>
 		<result property="creationDate" javaType="java.util.Date" column="creationDate"/>
 		<result property="createdBy" javaType="java.lang.Long" column="createdBy"/>
 		<result property="modifyDate" javaType="java.util.Date" column="modifyDate"/>

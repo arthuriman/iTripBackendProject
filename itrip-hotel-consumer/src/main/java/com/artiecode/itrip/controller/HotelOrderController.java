@@ -3,19 +3,15 @@ package com.artiecode.itrip.controller;
 import com.artiecode.itrip.base.controller.BaseController;
 import com.artiecode.itrip.base.enums.SuccessEnum;
 import com.artiecode.itrip.hotel.transport.HotelOrderTransport;
+import com.artiecode.itrip.pojo.entity.HotelOrder;
 import com.artiecode.itrip.pojo.entity.User;
-import com.artiecode.itrip.pojo.vo.HotelOrderAddVO;
-import com.artiecode.itrip.pojo.vo.ResponseResult;
-import com.artiecode.itrip.pojo.vo.RoomStoreVO;
-import com.artiecode.itrip.pojo.vo.ValidateRoomStoreVO;
+import com.artiecode.itrip.pojo.vo.*;
 import com.artiecode.itrip.user.transport.UserTransport;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
+import java.util.List;
 import java.util.Map;
 
 @RestController("hotelOrderController")
@@ -80,5 +76,44 @@ public class HotelOrderController extends BaseController {
 		}
 
 		return null;
+	}
+
+	/**
+	 * <b>根据订单ID查看个人订单详情</b>
+	 * @param orderId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/getpersonalorderinfo/{orderId}", method = RequestMethod.GET)
+	public ResponseResult<Object> getPersonalOrderInfo(@PathVariable("orderId") Long orderId) throws Exception {
+		List<HotelOrder> orderList = hotelOrderTransport.getPersonalOrderInfo(orderId);
+		if (orderList != null && orderList.size() > 0) {
+			return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, orderList.get(0));
+		}
+		return new ResponseResult<>(SuccessEnum.SUCCESS_FALSE, "未获得结果");
+	}
+
+	/**
+	 * <b>根据订单ID查看个人订单详情-房型相关信息</b>
+	 * @param orderId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/getpersonalorderroominfo/{orderId}", method = RequestMethod.GET)
+	public ResponseResult<Object> getPersonalOrderRoomInfo(@PathVariable("orderId") Long orderId) throws Exception {
+		PersonalOrderRoomVO personalOrderRoomVO = hotelOrderTransport.getPersonalOrderRoomInfo(orderId);
+		return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, personalOrderRoomVO);
+	}
+
+	/**
+	 * <b>根据订单ID获取订单信息</b>
+	 * @param orderId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/queryOrderById/{orderId}", method = RequestMethod.GET)
+	public ResponseResult<Object> queryOrderById(@PathVariable("orderId") Long orderId) throws Exception {
+		ModifyHotelOrderVO hotelOrderVO = hotelOrderTransport.queryOrderByID(orderId);
+		return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, orderId);
 	}
 }
