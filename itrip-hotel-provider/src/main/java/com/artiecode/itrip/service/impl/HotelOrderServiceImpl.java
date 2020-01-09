@@ -276,4 +276,18 @@ public class HotelOrderServiceImpl implements HotelOrderService {
 
 		return hotelOrderVO;
 	}
+
+	public HotelOrder getOrderByNo(String orderNo) throws Exception {
+		// 封装查询参数Map集合
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+		queryMap.put("orderNo", orderNo);
+
+		// 进行查询，获得结果集
+		List<HotelOrder> orderList = hotelOrderDao.findOrderByQuery(queryMap);
+
+		if (orderList != null && orderList.size() > 0) {
+			return orderList.get(0);
+		}
+		return null;
+	}
 }

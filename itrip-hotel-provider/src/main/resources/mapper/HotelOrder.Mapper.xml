@@ -83,6 +83,7 @@
 			itrip_hotel_order iho
 		<where>
 			<trim suffixOverrides="and">
+				<if test="id != null">iho.id=#{id}</if>
 				<if test="orderNo != null">iho.orderNo=#{orderNo} and</if>
 			</trim>
 		</where>

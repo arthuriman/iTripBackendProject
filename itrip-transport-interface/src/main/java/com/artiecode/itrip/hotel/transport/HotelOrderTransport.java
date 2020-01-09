@@ -61,4 +61,7 @@ public interface HotelOrderTransport {
 	 */
 	@RequestMapping(value = "/queryOrderById", method = RequestMethod.POST)
 	ModifyHotelOrderVO queryOrderByID(@RequestParam Long orderId) throws Exception;
+
+	@RequestMapping(value = "/queryOrderByNo", method = RequestMethod.POST)
+	HotelOrder getHotelOrderByNo(@RequestParam String orderNo) throws Exception;
 }
