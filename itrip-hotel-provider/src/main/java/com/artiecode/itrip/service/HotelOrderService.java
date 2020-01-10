@@ -55,4 +55,6 @@ public interface HotelOrderService {
 	ModifyHotelOrderVO queryOrderById(Long orderId) throws Exception;
 
 	HotelOrder getOrderByNo(String orderNo) throws Exception;
+
+	Page<HotelOrder> getHotelOrderListByPage(SearchOrderVO searchOrderVO) throws Exception;
 }

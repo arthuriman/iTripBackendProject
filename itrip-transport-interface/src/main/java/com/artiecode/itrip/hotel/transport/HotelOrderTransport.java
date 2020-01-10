@@ -64,4 +64,7 @@ public interface HotelOrderTransport {
 
 	@RequestMapping(value = "/queryOrderByNo", method = RequestMethod.POST)
 	HotelOrder getHotelOrderByNo(@RequestParam String orderNo) throws Exception;
+
+	@RequestMapping(value = "/getpersonalorderlist", method = RequestMethod.POST)
+	Page<HotelOrder> getHotelOrderListByPage(@RequestBody SearchOrderVO searchOrderVO) throws Exception;
 }

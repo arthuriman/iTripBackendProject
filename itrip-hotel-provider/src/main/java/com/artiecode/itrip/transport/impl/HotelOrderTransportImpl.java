@@ -75,4 +75,9 @@ public class HotelOrderTransportImpl implements HotelOrderTransport {
 	public HotelOrder getHotelOrderByNo(@RequestParam String orderNo) throws Exception {
 		return hotelOrderService.getOrderByNo(orderNo);
 	}
+
+	@RequestMapping(value = "/getpersonalorderlist", method = RequestMethod.POST)
+	public Page<HotelOrder> getHotelOrderListByPage(@RequestBody SearchOrderVO searchOrderVO) throws Exception {
+		return hotelOrderService.getHotelOrderListByPage(searchOrderVO);
+	}
 }

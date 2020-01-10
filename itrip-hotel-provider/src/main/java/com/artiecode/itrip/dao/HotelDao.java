@@ -23,11 +23,5 @@ public interface HotelDao {
 	 */
 	List<Hotel> findHotelListByQuery(Map<String, Object> queryMap) throws Exception;
 
-	/**
-	 * <b>根据查询条件查询订单列表</b>
-	 * @param queryMap
-	 * @return
-	 * @throws Exception
-	 */
-	List<HotelOrder> findOrderListByQuery(Map<String, Object> queryMap) throws Exception;
+	List<HotelOrder> findHotelOrderListByQuery(Map<String, Object> pageMap) throws Exception;
 }

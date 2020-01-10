@@ -36,4 +36,6 @@ public interface HotelOrderDao {
 	List<HotelOrder> findOrderByQuery(Map<String, Object> queryMap) throws Exception;
 
 	List<OrderLinkUser> findOrderLinkUserListByQuery(Map<String, Object> queryMap) throws Exception;
+
+	List<HotelOrder> findHotelOrderListByQuery(Map<String, Object> pageMap) throws Exception;
 }

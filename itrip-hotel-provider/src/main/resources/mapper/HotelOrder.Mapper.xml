@@ -107,6 +107,53 @@
 			</trim>
 		</where>
 	</select>
+
+	<select id="findHotelOrderListByQuery" parameterType="java.util.Map" resultMap="hotelOrderMap">
+		select
+			iho.id,
+			iho.userId,
+			iho.orderType,
+			iho.orderNo,
+			iho.tradeNo,
+			iho.hotelId,
+			iho.hotelName,
+			iho.roomId,
+			iho.count,
+			iho.bookingDays,
+			iho.checkInDate,
+			iho.checkOutDate,
+			iho.orderStatus,
+			iho.payAmount,
+			iho.payType,
+			iho.noticePhone,
+			iho.noticeEmail,
+			iho.specialRequirement,
+			iho.isNeedInvoice,
+			iho.invoiceType,
+			iho.invoiceHead,
+			iho.linkUserName,
+			iho.bookType,
+			iho.creationDate,
+			iho.createdBy,
+			iho.modifyDate,
+			iho.modifiedBy
+		from
+			itrip_hotel_order iho join itrip_user iu on iho.userId=iu.id
+		<where>
+			<trim suffixOverrides="and">
+				<if test="userCode != null">iu.userCode=#{userCode} and</if>
+				<if test="orderNo != null">iho.orderNo=#{orderNo} and</if>
+				<if test="linkUserName != null">iho.linkUserName=#{linkUserName} and</if>
+				<if test="startDate != null">iho.creationDate &gt;= #{startDate} and</if>
+				<if test="endDate != null">iho.creationDate &lt;=#{endDate} and</if>
+				<if test="orderStatus != null and orderStatus != -1">iho.orderStatus=#{orderStatus} and</if>
+				<if test="orderType != null and orderType != -1">iho.orderType=#{orderType} and</if>
+			</trim>
+		</where>
+		<if test="begin != null">
+			limit #{begin}, #{size}
+		</if>
+	</select>
 	
 	<resultMap id="hotelOrderMap" type="HotelOrder">
 		<id property="id" javaType="java.lang.Long" column="id"/>

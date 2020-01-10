@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -115,5 +116,29 @@ public class HotelOrderController extends BaseController {
 	public ResponseResult<Object> queryOrderById(@PathVariable("orderId") Long orderId) throws Exception {
 		ModifyHotelOrderVO hotelOrderVO = hotelOrderTransport.queryOrderByID(orderId);
 		return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, orderId);
+	}
+
+	/**
+	 * <b>根据个人订单列表，并分页显示</b>
+	 * @param searchOrderVO
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/getpersonalorderlist", method = RequestMethod.POST)
+	public ResponseResult<Object> getPersonalOrderList(@RequestBody SearchOrderVO searchOrderVO) throws Exception {
+		// 获得当前登录用户信息
+		String userCode = "";
+		Cookie[] cookies = request.getCookies();
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equals("user")) {
+				userCode = cookie.getValue();
+			}
+		}
+
+		// 将userCode封装到SearchOrderVO中
+		searchOrderVO.setUserCode(userCode);
+
+		Page<HotelOrder> page = hotelOrderTransport.getHotelOrderListByPage(searchOrderVO);
+		return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, page);
 	}
 }

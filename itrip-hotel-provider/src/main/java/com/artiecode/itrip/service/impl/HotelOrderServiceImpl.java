@@ -290,4 +290,36 @@ public class HotelOrderServiceImpl implements HotelOrderService {
 		}
 		return null;
 	}
+
+	public Page<HotelOrder> getHotelOrderListByPage(SearchOrderVO searchOrderVO) throws Exception {
+		// 封装查询分页查询参数
+		Map<String, Object> pageMap = new HashMap<String, Object>();
+		pageMap.put("userCode", searchOrderVO.getUserCode());
+		pageMap.put("orderNo", searchOrderVO.getOrderNo());
+		pageMap.put("linkUserName", searchOrderVO.getLinkUserName());
+		pageMap.put("startDate", searchOrderVO.getStartDate());
+		pageMap.put("endDate", searchOrderVO.getStartDate());
+		pageMap.put("orderStatus", searchOrderVO.getOrderStatus());
+		pageMap.put("orderType", searchOrderVO.getOrderType());
+		pageMap.put("begin", (searchOrderVO.getPageNo() - 1) * searchOrderVO.getPageSize());
+		pageMap.put("size", searchOrderVO.getPageSize());
+
+		List<HotelOrder> orderList = hotelOrderDao.findHotelOrderListByQuery(pageMap);
+
+		pageMap.remove("begin");
+		pageMap.remove("size");
+		Integer total = hotelOrderDao.findHotelOrderListByQuery(pageMap).size();
+
+		Integer pageCount = (total % searchOrderVO.getPageSize() == 0) ? (total / searchOrderVO.getPageSize())
+				: (total / searchOrderVO.getPageSize() + 1);
+
+		Page<HotelOrder> page = new Page<HotelOrder>();
+		page.setRows(orderList);
+		page.setTotal(total);
+		page.setPageCount(pageCount);
+		page.setPageSize(searchOrderVO.getPageSize());
+		page.setCurPage(searchOrderVO.getPageNo());
+
+		return page;
+	}
 }
